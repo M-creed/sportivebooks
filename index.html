@@ -4,21 +4,441 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sportive Books</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-  /* ← نفس CSS الـ viewer اللي عملناه قبل كده بالظبط */
-  /* بس بدل ما يطلب ملف، بيجيب من GitHub مباشرة    */
+:root {
+  --bg:       #0b0d11;
+  --surface:  #13161d;
+  --card:     #191d27;
+  --border:   #252b3b;
+  --accent:   #3b82f6;
+  --accent2:  #8b5cf6;
+  --gold:     #f59e0b;
+  --text:     #e2e8f0;
+  --muted:    #64748b;
+  --success:  #10b981;
+  --danger:   #ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Cairo',sans-serif;
+  min-height:100vh;
+}
+
+/* ── HEADER ── */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,13,17,.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:14px 24px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.logo{
+  font-size:1.25rem;font-weight:900;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  white-space:nowrap;flex-shrink:0;
+}
+.header-stats{display:flex;gap:10px;flex-shrink:0}
+.pill{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:4px 12px;
+  font-size:.75rem;color:var(--muted);white-space:nowrap;
+}
+.pill b{color:var(--accent)}
+.search-wrap{position:relative;flex:1;min-width:160px;max-width:320px}
+.search-wrap svg{
+  position:absolute;right:11px;top:50%;transform:translateY(-50%);
+  color:var(--muted);pointer-events:none;width:15px;height:15px;
+}
+#search{
+  width:100%;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:8px 36px 8px 12px;
+  color:var(--text);font-family:'Cairo',sans-serif;font-size:.85rem;
+  outline:none;transition:border-color .2s;
+}
+#search:focus{border-color:var(--accent)}
+#search::placeholder{color:var(--muted)}
+#sort{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:8px 12px;
+  color:var(--text);font-family:'Cairo',sans-serif;
+  font-size:.82rem;cursor:pointer;outline:none;flex-shrink:0;
+}
+
+/* ── MAIN ── */
+main{padding:28px 24px;max-width:1400px;margin:0 auto}
+
+/* loading */
+#loading{
+  text-align:center;padding:80px 20px;
+}
+.spinner{
+  width:44px;height:44px;
+  border:3px solid var(--border);border-top-color:var(--accent);
+  border-radius:50%;animation:spin .7s linear infinite;
+  margin:0 auto 16px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loading p{color:var(--muted);font-size:.95rem}
+
+/* empty */
+#empty{display:none;text-align:center;padding:80px 20px;color:var(--muted)}
+#empty svg{opacity:.25;margin-bottom:16px}
+
+/* grid */
+#grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:20px;
+}
+
+/* ── CARD ── */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;
+  cursor:pointer;
+  animation:fadeUp .35s ease both;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 40px rgba(0,0,0,.5);
+  border-color:var(--accent);
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* thumb */
+.thumb{
+  position:relative;width:100%;aspect-ratio:3/4;
+  background:var(--surface);overflow:hidden;
+}
+.thumb img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .4s;
+}
+.card:hover .thumb img{transform:scale(1.06)}
+.no-thumb{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(160deg,#161b28,#0b0d11);
+}
+.no-thumb svg{opacity:.18;width:52px;height:52px}
+.no-thumb span{color:var(--muted);font-size:.72rem}
+
+/* badges */
+.badge-size{
+  position:absolute;bottom:8px;right:8px;
+  background:rgba(0,0,0,.8);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--gold);font-size:.68rem;font-weight:700;
+  padding:3px 8px;border-radius:6px;font-family:monospace;
+}
+.badge-new{
+  position:absolute;top:8px;right:8px;
+  background:var(--success);color:#fff;
+  font-size:.65rem;font-weight:700;
+  padding:2px 8px;border-radius:6px;
+}
+
+/* card body */
+.card-body{padding:11px 13px 13px;flex:1;display:flex;flex-direction:column;gap:5px}
+.card-title{
+  font-size:.8rem;font-weight:600;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-date{font-size:.7rem;color:var(--muted);margin-top:auto}
+
+/* download btn on card */
+.card-dl{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);
+  color:var(--accent);border-radius:8px;padding:7px;
+  font-size:.78rem;font-weight:600;font-family:'Cairo',sans-serif;
+  cursor:pointer;margin:4px 13px 12px;
+  transition:background .2s;text-decoration:none;
+}
+.card-dl:hover{background:rgba(59,130,246,.25)}
+.card-dl svg{width:14px;height:14px;flex-shrink:0}
+
+/* ── MODAL ── */
+#modal{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;padding:20px;
+}
+#modal.open{display:flex}
+.mbox{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;max-width:460px;width:100%;
+  padding:24px;position:relative;max-height:90vh;overflow-y:auto;
+  animation:popIn .22s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn{
+  from{opacity:0;transform:scale(.85)}
+  to{opacity:1;transform:scale(1)}
+}
+.mclose{
+  position:absolute;top:14px;left:14px;
+  background:none;border:none;color:var(--muted);
+  font-size:1.3rem;cursor:pointer;line-height:1;
+  transition:color .2s;
+}
+.mclose:hover{color:var(--text)}
+.mthumb{
+  width:100%;max-height:240px;object-fit:contain;
+  border-radius:10px;margin-bottom:16px;
+  background:var(--surface);display:block;
+}
+.mtitle{font-size:1rem;font-weight:700;margin-bottom:10px;padding-left:24px}
+.mmeta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.mchip{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:4px 11px;
+  font-size:.75rem;color:var(--muted);
+}
+.mchip b{color:var(--text)}
+.mcaption{font-size:.83rem;color:var(--muted);margin-bottom:16px;line-height:1.7}
+.mbtn-row{display:flex;gap:10px}
+.mbtn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  border-radius:10px;padding:11px;font-weight:700;font-size:.88rem;
+  font-family:'Cairo',sans-serif;cursor:pointer;
+  text-decoration:none;transition:opacity .2s;border:none;
+}
+.mbtn-dl{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.mbtn-tg{background:var(--surface);border:1px solid var(--border);color:var(--text)}
+.mbtn:hover{opacity:.85}
+.mbtn svg{width:17px;height:17px;flex-shrink:0}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 </style>
 </head>
 <body>
+
+<header>
+  <div class="logo">📚 Sportive Books</div>
+  <div class="header-stats">
+    <div class="pill">الكتب: <b id="total">—</b></div>
+    <div class="pill">النتائج: <b id="results">—</b></div>
+  </div>
+  <div class="search-wrap">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="ابحث عن كتاب...">
+  </div>
+  <select id="sort">
+    <option value="newest">الأحدث أولاً</option>
+    <option value="oldest">الأقدم أولاً</option>
+    <option value="size_desc">الأكبر حجماً</option>
+    <option value="size_asc">الأصغر حجماً</option>
+    <option value="az">أبجدي</option>
+  </select>
+</header>
+
+<main>
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>جاري تحميل المكتبة...</p>
+  </div>
+  <div id="empty">
+    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.172 16.172a4 4 0 0 1 5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+    <p>لا توجد نتائج</p>
+  </div>
+  <div id="grid"></div>
+</main>
+
+<!-- Modal -->
+<div id="modal">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal()">✕</button>
+    <img id="mThumb" class="mthumb" src="" alt="" style="display:none">
+    <div class="mtitle" id="mTitle"></div>
+    <div class="mmeta">
+      <div class="mchip">📦 <b id="mSize"></b> MB</div>
+      <div class="mchip">📅 <b id="mDate"></b></div>
+    </div>
+    <div class="mcaption" id="mCap"></div>
+    <div class="mbtn-row">
+      <a id="mDl" href="#" class="mbtn mbtn-dl" download>
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        تحميل الكتاب
+      </a>
+      <a id="mTg" href="#" target="_blank" class="mbtn mbtn-tg">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.614c-.152.676-.556.84-1.126.523l-3.115-2.295-1.503 1.447c-.166.166-.305.305-.625.305l.223-3.168 5.773-5.215c.25-.224-.055-.348-.39-.124l-7.133 4.49-3.073-.96c-.668-.208-.68-.668.14-.99l12-4.624c.556-.204 1.043.124.869.997z"/></svg>
+        تيليجرام
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
+// ════════════════════════════════════════
+//  ← غيّر ده لـ repo بتاعك
+// ════════════════════════════════════════
 const BOOKS_URL = "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books.json";
 
-async function loadBooks() {
-  const r = await fetch(BOOKS_URL + "?t=" + Date.now()); // منع cache
-  return await r.json();
+let allBooks = [];
+let filtered  = [];
+
+// ── جيب الكتب من GitHub ──
+async function fetchBooks() {
+  try {
+    const r = await fetch(BOOKS_URL + "?t=" + Date.now());
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch(e) {
+    console.error("fetch error:", e);
+    return [];
+  }
 }
-// ... باقي الكود
+
+function esc(s) {
+  return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+// ── عرض الكتب ──
+function render(books) {
+  const grid  = document.getElementById("grid");
+  const empty = document.getElementById("empty");
+  document.getElementById("results").textContent = books.length;
+
+  if (!books.length) {
+    grid.innerHTML = "";
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+
+  // حساب الأحدث (آخر 7 أيام)
+  const week = Date.now() - 7*24*60*60*1000;
+
+  grid.innerHTML = books.map((b, i) => {
+    const isNew  = new Date(b.date).getTime() > week;
+    const dlHref = b.pdf_url || b.tg_link || "#";
+
+    return `
+    <div class="card" style="animation-delay:${Math.min(i,40)*20}ms" onclick="openModal(${i})">
+      <div class="thumb">
+        ${b.thumb_url
+          ? `<img src="${esc(b.thumb_url)}" alt="${esc(b.title)}" loading="lazy">`
+          : `<div class="no-thumb">
+              <svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              <span>لا يوجد غلاف</span>
+            </div>`
+        }
+        <span class="badge-size">${b.size_mb} MB</span>
+        ${isNew ? '<span class="badge-new">جديد</span>' : ""}
+      </div>
+      <div class="card-body">
+        <div class="card-title">${esc(b.title)}</div>
+        <div class="card-date">${b.date||""}</div>
+      </div>
+      <a class="card-dl" href="${esc(dlHref)}" download onclick="event.stopPropagation()">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        تحميل
+      </a>
+    </div>`;
+  }).join("");
+}
+
+// ── فلتر + ترتيب ──
+function applyFilters() {
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const s = document.getElementById("sort").value;
+
+  filtered = allBooks.filter(b =>
+    !q || b.title.toLowerCase().includes(q) || (b.caption||"").toLowerCase().includes(q)
+  );
+
+  if (s === "newest")    filtered.sort((a,b) => b.message_id - a.message_id);
+  if (s === "oldest")    filtered.sort((a,b) => a.message_id - b.message_id);
+  if (s === "size_desc") filtered.sort((a,b) => b.size_mb   - a.size_mb);
+  if (s === "size_asc")  filtered.sort((a,b) => a.size_mb   - b.size_mb);
+  if (s === "az")        filtered.sort((a,b) => a.title.localeCompare(b.title));
+
+  render(filtered);
+}
+
+let searchTimer;
+document.getElementById("search").addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(applyFilters, 200);
+});
+document.getElementById("sort").addEventListener("change", applyFilters);
+
+// ── Modal ──
+function openModal(idx) {
+  const b = filtered[idx];
+  if (!b) return;
+
+  const mThumb = document.getElementById("mThumb");
+  if (b.thumb_url) {
+    mThumb.src = b.thumb_url;
+    mThumb.style.display = "block";
+  } else {
+    mThumb.style.display = "none";
+  }
+
+  document.getElementById("mTitle").textContent = b.title;
+  document.getElementById("mSize").textContent  = b.size_mb;
+  document.getElementById("mDate").textContent  = b.date || "—";
+  document.getElementById("mCap").textContent   = b.caption || "لا يوجد وصف";
+
+  const dlBtn = document.getElementById("mDl");
+  if (b.pdf_url) {
+    dlBtn.href = b.pdf_url;
+    dlBtn.style.display = "flex";
+  } else {
+    dlBtn.style.display = "none";
+  }
+
+  document.getElementById("mTg").href = b.tg_link || "#";
+  document.getElementById("modal").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.remove("open");
+}
+
+document.getElementById("modal").addEventListener("click", e => {
+  if (e.target === document.getElementById("modal")) closeModal();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+// ── Auto-refresh كل 5 دقايق ──
+async function refresh() {
+  const books = await fetchBooks();
+  if (books.length !== allBooks.length) {
+    allBooks = books;
+    document.getElementById("total").textContent = books.length;
+    applyFilters();
+  }
+}
+
+// ── Init ──
+(async () => {
+  allBooks = await fetchBooks();
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("total").textContent = allBooks.length;
+  filtered = [...allBooks];
+  applyFilters();
+
+  setInterval(refresh, 5 * 60 * 1000);
+})();
 </script>
 </body>
 </html>

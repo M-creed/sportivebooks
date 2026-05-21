@@ -1,5 +1,16 @@
 [
   {
+    "title": "scan",
+    "filename": "scan.pdf",
+    "size_mb": 34.56,
+    "date": "2025-05-23",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/91406",
+    "message_id": 91406,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/91406.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/scan.pdf"
+  },
+  {
     "title": "The_Core_Strength_Training_Book_Future_Publishing_Z_Library",
     "filename": "The_Core_Strength_Training_Book_Future_Publishing_Z_Library.pdf",
     "size_mb": 92.48,

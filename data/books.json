@@ -1,5 +1,115 @@
 [
   {
+    "title": "غلاف سجل الوارد",
+    "filename": "غلاف سجل الوارد.pdf",
+    "size_mb": 0.16,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83885",
+    "message_id": 83885,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83885.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_سجل_الوارد.pdf"
+  },
+  {
+    "title": "غلاف سجل المشاركات فى أنشطة أخرى",
+    "filename": "غلاف سجل المشاركات فى أنشطة أخرى.pdf",
+    "size_mb": 0.27,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83886",
+    "message_id": 83886,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83886.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_سجل_المشاركات_فى_أنشطة_أخرى.pdf"
+  },
+  {
+    "title": "غلاف سجل المخيمات",
+    "filename": "غلاف سجل المخيمات.pdf",
+    "size_mb": 0.3,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83887",
+    "message_id": 83887,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83887.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_سجل_المخيمات.pdf"
+  },
+  {
+    "title": "غلاف سجل العهدة المستهلكة",
+    "filename": "غلاف سجل العهدة المستهلكة.pdf",
+    "size_mb": 0.33,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83888",
+    "message_id": 83888,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83888.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_سجل_العهدة_المستهلكة.pdf"
+  },
+  {
+    "title": "غلاف سجل الصادر",
+    "filename": "غلاف سجل الصادر.pdf",
+    "size_mb": 0.13,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83889",
+    "message_id": 83889,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83889.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_سجل_الصادر.pdf"
+  },
+  {
+    "title": "غلاف سجل الرحلات والزيارات",
+    "filename": "غلاف سجل الرحلات والزيارات.pdf",
+    "size_mb": 0.34,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83890",
+    "message_id": 83890,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83890.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_سجل_الرحلات_والزيارات.pdf"
+  },
+  {
+    "title": "غلاف_سجل_الخدمة_العامة_وتنمية_المجتمع",
+    "filename": "غلاف_سجل_الخدمة_العامة_وتنمية_المجتمع.pdf",
+    "size_mb": 0.12,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83891",
+    "message_id": 83891,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83891.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_سجل_الخدمة_العامة_وتنمية_المجتمع.pdf"
+  },
+  {
+    "title": "غلاف السجل المالى للفرقة",
+    "filename": "غلاف السجل المالى للفرقة.pdf",
+    "size_mb": 0.26,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83892",
+    "message_id": 83892,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83892.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_السجل_المالى_للفرقة.pdf"
+  },
+  {
+    "title": "غلاف الخطة العامة",
+    "filename": "غلاف الخطة العامة.pdf",
+    "size_mb": 0.39,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83893",
+    "message_id": 83893,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83893.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_الخطة_العامة.pdf"
+  },
+  {
+    "title": "غلاف الحفلات والمناسبات",
+    "filename": "غلاف الحفلات والمناسبات.pdf",
+    "size_mb": 0.21,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83894",
+    "message_id": 83894,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83894.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/غلاف_الحفلات_والمناسبات.pdf"
+  },
+  {
     "title": "صيحة محلى الصحبة",
     "filename": "صيحة محلى الصحبة.pdf",
     "size_mb": 0.17,

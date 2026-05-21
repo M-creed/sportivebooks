@@ -3,8 +3,12 @@ import json
 import base64
 import os
 import httpx
+from dotenv import load_dotenv
 from telethon import TelegramClient, events
 from telethon.tl.types import MessageMediaDocument, DocumentAttributeFilename
+
+load_dotenv()
+
 
 # ── من Heroku Config Vars ──
 API_ID      = int(os.environ["TG_API_ID"])

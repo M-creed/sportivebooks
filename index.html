@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sportive Books</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- بعد -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 <style>
 :root{
   --bg:#0b0d11;--surface:#13161d;--card:#191d27;--border:#252b3b;
@@ -451,7 +452,7 @@ async function refresh() {
   document.getElementById("total").textContent = allBooks.length;
   filtered = [...allBooks];
   applyFilters();
-  setInterval(refresh, 5 * 60 * 1000);
+  setInterval(refresh,  30 * 1000);
 })();
 </script>
 </body>

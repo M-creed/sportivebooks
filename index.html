@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sportive Books</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ← نفس CSS الـ viewer اللي عملناه قبل كده بالظبط */
+  /* بس بدل ما يطلب ملف، بيجيب من GitHub مباشرة    */
+</style>
+</head>
+<body>
+<script>
+const BOOKS_URL = "https://raw.githubusercontent.com/GH_REPO/main/data/books.json";
 
+async function loadBooks() {
+  const r = await fetch(BOOKS_URL + "?t=" + Date.now()); // منع cache
+  return await r.json();
+}
+// ... باقي الكود
+</script>
+</body>
+</html>

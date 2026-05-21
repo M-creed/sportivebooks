@@ -1,5 +1,115 @@
 [
   {
+    "title": "برنامج تدريب اللياقة البدنية",
+    "filename": "برنامج تدريب اللياقة البدنية.pdf",
+    "size_mb": 3.87,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83855",
+    "message_id": 83855,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83855.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/برنامج_تدريب_اللياقة_البدنية.pdf"
+  },
+  {
+    "title": "المدرب الرياضي",
+    "filename": "المدرب الرياضي.pdf",
+    "size_mb": 11.81,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83856",
+    "message_id": 83856,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83856.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/المدرب_الرياضي.pdf"
+  },
+  {
+    "title": "المرتفعات والتدريب البدني",
+    "filename": "المرتفعات والتدريب البدني.pdf",
+    "size_mb": 0.1,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83857",
+    "message_id": 83857,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83857.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/المرتفعات_والتدريب_البدني.pdf"
+  },
+  {
+    "title": "التعليم_الالكتروني_ترف_أم_ضرورة_؟!",
+    "filename": "التعليم_الالكتروني_ترف_أم_ضرورة_؟!.pdf",
+    "size_mb": 0.49,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83858",
+    "message_id": 83858,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83858.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/التعليم_الالكتروني_ترف_أم_ضرورة_؟!.pdf"
+  },
+  {
+    "title": "الإيقاع_البيولوجي_والأداء_الرياضي",
+    "filename": "الإيقاع_البيولوجي_والأداء_الرياضي.pdf",
+    "size_mb": 0.09,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83859",
+    "message_id": 83859,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83859.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/الإيقاع_البيولوجي_والأداء_الرياضي.pdf"
+  },
+  {
+    "title": "التضخم العضلي",
+    "filename": "التضخم العضلي.pdf",
+    "size_mb": 0.08,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83860",
+    "message_id": 83860,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83860.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/التضخم_العضلي.pdf"
+  },
+  {
+    "title": "الالياف_العضلية_ودورها_في_الأداء_البدني",
+    "filename": "الالياف_العضلية_ودورها_في_الأداء_البدني.pdf",
+    "size_mb": 0.07,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83861",
+    "message_id": 83861,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83861.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/الالياف_العضلية_ودورها_في_الأداء_البدني.pdf"
+  },
+  {
+    "title": "اصول تكنولوجيا التعليم",
+    "filename": "اصول تكنولوجيا التعليم.pdf",
+    "size_mb": 15.08,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83862",
+    "message_id": 83862,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83862.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/اصول_تكنولوجيا_التعليم.pdf"
+  },
+  {
+    "title": "التنس لعبة الملوك",
+    "filename": "التنس لعبة الملوك.pdf",
+    "size_mb": 4.88,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83863",
+    "message_id": 83863,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83863.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/التنس_لعبة_الملوك.pdf"
+  },
+  {
+    "title": "مبادئ علم الحركة )",
+    "filename": "مبادئ علم الحركة ).pdf",
+    "size_mb": 4.74,
+    "date": "2024-11-01",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/83864",
+    "message_id": 83864,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/83864.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/مبادئ_علم_الحركة_).pdf"
+  },
+  {
     "title": "مبادئ علم الحركة",
     "filename": "مبادئ علم الحركة.pdf",
     "size_mb": 1.6,

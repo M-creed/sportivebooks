@@ -1,5 +1,16 @@
 [
   {
+    "title": "my_cv",
+    "filename": "my_cv.pdf",
+    "size_mb": 0.56,
+    "date": "2026-02-10",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/97996",
+    "message_id": 97996,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/97996.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/my_cv.pdf"
+  },
+  {
     "title": "introduction to myofascial techniques NASM",
     "filename": "introduction to myofascial techniques NASM.pdf",
     "size_mb": 13.35,

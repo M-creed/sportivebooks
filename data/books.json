@@ -1,5 +1,115 @@
 [
   {
+    "title": "قياسات الجسم",
+    "filename": "قياسات الجسم.pdf",
+    "size_mb": 0.92,
+    "date": "2024-10-02",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82106",
+    "message_id": 82106,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82106.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/قياسات_الجسم.pdf"
+  },
+  {
+    "title": "كتاب التغذيه لمنظمه NASM مترجم",
+    "filename": "كتاب التغذيه لمنظمه NASM مترجم.pdf",
+    "size_mb": 32.99,
+    "date": "2024-10-03",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82147",
+    "message_id": 82147,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82147.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/كتاب_التغذيه_لمنظمه_NASM_مترجم.pdf"
+  },
+  {
+    "title": "الفيبروميوليجا",
+    "filename": "الفيبروميوليجا.pdf",
+    "size_mb": 5.27,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82194",
+    "message_id": 82194,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82194.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/الفيبروميوليجا.pdf"
+  },
+  {
+    "title": "التحليل الغذائي ",
+    "filename": "التحليل الغذائي .pdf",
+    "size_mb": 36.93,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82195",
+    "message_id": 82195,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82195.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/التحليل_الغذائي_.pdf"
+  },
+  {
+    "title": "Lecture 4",
+    "filename": "Lecture 4.pdf",
+    "size_mb": 0.48,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82196",
+    "message_id": 82196,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82196.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/Lecture_4.pdf"
+  },
+  {
+    "title": "Lecture 1,2,3, and 4",
+    "filename": "Lecture 1,2,3, and 4.pdf",
+    "size_mb": 14.3,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82197",
+    "message_id": 82197,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82197.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/Lecture_1,2,3,_and_4.pdf"
+  },
+  {
+    "title": "Lecture 5",
+    "filename": "Lecture 5.pdf",
+    "size_mb": 0.63,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82198",
+    "message_id": 82198,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82198.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/Lecture_5.pdf"
+  },
+  {
+    "title": "Lecture 5, 6, & 7",
+    "filename": "Lecture 5, 6, & 7.pdf",
+    "size_mb": 1.78,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82199",
+    "message_id": 82199,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82199.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/Lecture_5,_6,_&_7.pdf"
+  },
+  {
+    "title": "Lecture 8 & 9",
+    "filename": "Lecture 8 & 9.pdf",
+    "size_mb": 1.28,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82200",
+    "message_id": 82200,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82200.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/Lecture_8_&_9.pdf"
+  },
+  {
+    "title": "Lecture 9 Cont",
+    "filename": "Lecture 9 Cont.pdf",
+    "size_mb": 2.02,
+    "date": "2024-10-04",
+    "caption": "",
+    "tg_link": "https://t.me/Sportive_Books/82201",
+    "message_id": 82201,
+    "thumb_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/thumbs/82201.jpg",
+    "pdf_url": "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books/Lecture_9_Cont.pdf"
+  },
+  {
     "title": "Stages of Change",
     "filename": "Stages of Change.pdf",
     "size_mb": 0.65,

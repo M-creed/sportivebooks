@@ -5,21 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sportive Books</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<!-- بعد -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 <style>
 :root{
   --bg:#0b0d11;--surface:#13161d;--card:#191d27;--border:#252b3b;
   --accent:#3b82f6;--accent2:#8b5cf6;--gold:#f59e0b;
-  --text:#e2e8f0;--muted:#64748b;--success:#10b981;
+  --text:#e2e8f0;--muted:#64748b;--success:#10b981;--danger:#ef4444;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh}
 
+/* ── HEADER ── */
 header{
   position:sticky;top:0;z-index:100;
-  background:rgba(11,13,17,.9);backdrop-filter:blur(16px);
+  background:rgba(11,13,17,.92);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
   padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
 }
@@ -30,158 +29,157 @@ header{
   white-space:nowrap;flex-shrink:0;
 }
 .header-stats{display:flex;gap:10px;flex-shrink:0}
-.pill{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;padding:4px 12px;font-size:.75rem;color:var(--muted);white-space:nowrap;
-}
+.pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:.75rem;color:var(--muted);white-space:nowrap}
 .pill b{color:var(--accent)}
 .search-wrap{position:relative;flex:1;min-width:160px;max-width:320px}
-.search-wrap svg{
-  position:absolute;right:11px;top:50%;transform:translateY(-50%);
-  color:var(--muted);pointer-events:none;width:15px;height:15px;
-}
-#search{
-  width:100%;background:var(--surface);border:1px solid var(--border);
-  border-radius:10px;padding:8px 36px 8px 12px;
-  color:var(--text);font-family:'Cairo',sans-serif;font-size:.85rem;
-  outline:none;transition:border-color .2s;
-}
+.search-wrap svg{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;width:15px;height:15px}
+#search{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 36px 8px 12px;color:var(--text);font-family:'Cairo',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s}
 #search:focus{border-color:var(--accent)}
 #search::placeholder{color:var(--muted)}
-#sort{
+#sort{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--text);font-family:'Cairo',sans-serif;font-size:.82rem;cursor:pointer;outline:none;flex-shrink:0}
+
+/* ── CHANNEL SEARCH SECTION ── */
+#channel-search-section{
+  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.08));
+  border-bottom:1px solid var(--border);
+  padding:20px 24px;
+}
+.cs-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.cs-header svg{color:var(--accent);flex-shrink:0}
+.cs-title{font-size:1rem;font-weight:700}
+.cs-subtitle{font-size:.8rem;color:var(--muted);margin-right:auto}
+.cs-input-row{display:flex;gap:10px}
+#channelSearch{
+  flex:1;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:10px 16px;color:var(--text);
+  font-family:'Cairo',sans-serif;font-size:.9rem;outline:none;
+  transition:border-color .2s;
+}
+#channelSearch:focus{border-color:var(--accent)}
+#channelSearch::placeholder{color:var(--muted)}
+#channelSearchBtn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;border:none;border-radius:10px;padding:10px 20px;
+  font-family:'Cairo',sans-serif;font-weight:700;font-size:.88rem;
+  cursor:pointer;white-space:nowrap;transition:opacity .2s;
+  display:flex;align-items:center;gap:6px;
+}
+#channelSearchBtn:hover{opacity:.85}
+#channelSearchBtn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ngrok url input */
+.ngrok-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ngrok-label{font-size:.75rem;color:var(--muted);white-space:nowrap}
+#ngrokUrl{
+  flex:1;background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:6px 12px;color:var(--text);
+  font-family:monospace;font-size:.78rem;outline:none;
+}
+#ngrokUrl:focus{border-color:var(--accent)}
+.save-url-btn{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:10px;padding:8px 12px;color:var(--text);
-  font-family:'Cairo',sans-serif;font-size:.82rem;cursor:pointer;outline:none;flex-shrink:0;
+  border-radius:8px;padding:6px 12px;color:var(--accent);
+  font-family:'Cairo',sans-serif;font-size:.75rem;cursor:pointer;
+  white-space:nowrap;
 }
 
-main{padding:28px 24px;max-width:1400px;margin:0 auto}
+/* search results */
+#channelResults{margin-top:16px}
+.cr-item{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;display:flex;align-items:center;gap:14px;
+  margin-bottom:10px;transition:border-color .2s;
+}
+.cr-item:hover{border-color:var(--accent)}
+.cr-icon{
+  width:44px;height:44px;background:var(--surface);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:1.3rem;
+}
+.cr-info{flex:1;min-width:0}
+.cr-title{font-size:.88rem;font-weight:600;margin-bottom:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cr-meta{font-size:.75rem;color:var(--muted)}
+.cr-actions{display:flex;gap:8px;flex-shrink:0}
+.cr-btn{
+  display:flex;align-items:center;gap:5px;
+  border-radius:8px;padding:7px 12px;font-size:.78rem;font-weight:600;
+  font-family:'Cairo',sans-serif;cursor:pointer;border:none;
+  transition:opacity .2s;text-decoration:none;white-space:nowrap;
+}
+.cr-btn-dl{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.cr-btn-tg{background:var(--surface);border:1px solid var(--border)!important;border:none;color:var(--text)}
+.cr-btn:hover{opacity:.8}
+.cr-btn:disabled{opacity:.4;cursor:not-allowed}
+.cr-btn svg{width:13px;height:13px}
 
+.cs-loading{text-align:center;padding:20px;color:var(--muted);font-size:.88rem}
+.cs-empty{text-align:center;padding:20px;color:var(--muted);font-size:.88rem}
+.cs-error{text-align:center;padding:12px;color:var(--danger);font-size:.85rem;
+  background:rgba(239,68,68,.1);border-radius:8px;margin-top:8px}
+
+/* ── MAIN ── */
+main{padding:20px 24px;max-width:1400px;margin:0 auto}
 #loading{text-align:center;padding:80px 20px}
-.spinner{
-  width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);
-  border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px;
-}
+.spinner{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
 #loading p{color:var(--muted);font-size:.95rem}
 #empty{display:none;text-align:center;padding:80px 20px;color:var(--muted)}
-#empty svg{opacity:.25;margin-bottom:16px}
 
 #grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:12px;
+  gap:14px;
+}
+@media(max-width:480px){
+  #grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  main{padding:12px}
+  #channel-search-section{padding:14px}
+  .cs-input-row{flex-direction:column}
 }
 
+/* ── CARD ── */
 .card{
   background:var(--card);border:1px solid var(--border);
   border-radius:14px;overflow:hidden;display:flex;flex-direction:column;
   cursor:pointer;animation:fadeUp .35s ease both;
   transition:transform .25s,box-shadow .25s,border-color .25s;
 }
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 16px 40px rgba(0,0,0,.5);
-  border-color:var(--accent);
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:translateY(0)}
-}
+.card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.5);border-color:var(--accent)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
 .thumb{position:relative;width:100%;aspect-ratio:3/4;background:var(--surface);overflow:hidden}
-.thumb canvas{width:100%!important;height:100%!important;object-fit:cover}
 .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.card:hover .thumb canvas,.card:hover .thumb img{transform:scale(1.06)}
-
-.no-thumb{
-  width:100%;height:100%;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:8px;
-  background:linear-gradient(160deg,#161b28,#0b0d11);
-}
-.no-thumb svg{opacity:.18;width:52px;height:52px}
-.no-thumb span{color:var(--muted);font-size:.72rem}
-
-.thumb-loading{
-  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-  background:var(--surface);
-}
-.thumb-loading .mini-spin{
-  width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);
-  border-radius:50%;animation:spin .7s linear infinite;
-}
-
-.badge-size{
-  position:absolute;bottom:8px;right:8px;
-  background:rgba(0,0,0,.8);backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.08);
-  color:var(--gold);font-size:.68rem;font-weight:700;
-  padding:3px 8px;border-radius:6px;font-family:monospace;
-  z-index:2;
-}
-.badge-new{
-  position:absolute;top:8px;right:8px;
-  background:var(--success);color:#fff;
-  font-size:.65rem;font-weight:700;
-  padding:2px 8px;border-radius:6px;z-index:2;
-}
-
-.card-body{padding:11px 13px 13px;flex:1;display:flex;flex-direction:column;gap:5px}
-.card-title{
-  font-size:.8rem;font-weight:600;line-height:1.4;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-}
-.card-date{font-size:.7rem;color:var(--muted);margin-top:auto}
-
-.card-dl{
-  display:flex;align-items:center;justify-content:center;gap:5px;
-  background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);
-  color:var(--accent);border-radius:8px;padding:7px;
-  font-size:.78rem;font-weight:600;font-family:'Cairo',sans-serif;
-  cursor:pointer;margin:4px 13px 12px;
-  transition:background .2s;text-decoration:none;
-}
+.card:hover .thumb img{transform:scale(1.06)}
+.no-thumb{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(160deg,#161b28,#0b0d11)}
+.no-thumb svg{opacity:.18;width:44px;height:44px}
+.no-thumb span{color:var(--muted);font-size:.7rem}
+.thumb-loading{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--surface)}
+.mini-spin{width:22px;height:22px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+.badge-size{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08);color:var(--gold);font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:6px;font-family:monospace;z-index:2}
+.badge-new{position:absolute;top:8px;right:8px;background:var(--success);color:#fff;font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:6px;z-index:2}
+.card-body{padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:4px}
+.card-title{font-size:.78rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-date{font-size:.68rem;color:var(--muted);margin-top:auto}
+.card-dl{display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);color:var(--accent);border-radius:8px;padding:7px;font-size:.76rem;font-weight:600;font-family:'Cairo',sans-serif;cursor:pointer;margin:4px 12px 10px;transition:background .2s;text-decoration:none}
 .card-dl:hover{background:rgba(59,130,246,.25)}
-.card-dl svg{width:14px;height:14px;flex-shrink:0}
+.card-dl svg{width:13px;height:13px;flex-shrink:0}
 
-/* modal */
-#modal{
-  display:none;position:fixed;inset:0;z-index:200;
-  background:rgba(0,0,0,.85);backdrop-filter:blur(12px);
-  align-items:center;justify-content:center;padding:20px;
-}
+/* ── MODAL ── */
+#modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px}
 #modal.open{display:flex}
-.mbox{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:18px;max-width:460px;width:100%;
-  padding:24px;position:relative;max-height:90vh;overflow-y:auto;
-  animation:popIn .22s cubic-bezier(.34,1.56,.64,1);
-}
+.mbox{background:var(--card);border:1px solid var(--border);border-radius:18px;max-width:460px;width:100%;padding:24px;position:relative;max-height:90vh;overflow-y:auto;animation:popIn .22s cubic-bezier(.34,1.56,.64,1)}
 @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
-.mclose{
-  position:absolute;top:14px;left:14px;
-  background:none;border:none;color:var(--muted);
-  font-size:1.3rem;cursor:pointer;line-height:1;transition:color .2s;
-}
+.mclose{position:absolute;top:14px;left:14px;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;transition:color .2s}
 .mclose:hover{color:var(--text)}
-#mCanvas{
-  width:100%;border-radius:10px;margin-bottom:16px;
-  background:var(--surface);display:block;
-}
+#mImg{width:100%;border-radius:10px;margin-bottom:16px;background:var(--surface);display:none}
 .mtitle{font-size:1rem;font-weight:700;margin-bottom:10px;padding-left:24px}
 .mmeta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.mchip{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:8px;padding:4px 11px;font-size:.75rem;color:var(--muted);
-}
+.mchip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px 11px;font-size:.75rem;color:var(--muted)}
 .mchip b{color:var(--text)}
 .mcaption{font-size:.83rem;color:var(--muted);margin-bottom:16px;line-height:1.7}
 .mbtn-row{display:flex;gap:10px}
-.mbtn{
-  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
-  border-radius:10px;padding:11px;font-weight:700;font-size:.88rem;
-  font-family:'Cairo',sans-serif;cursor:pointer;
-  text-decoration:none;transition:opacity .2s;border:none;
-}
+.mbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:10px;padding:11px;font-weight:700;font-size:.88rem;font-family:'Cairo',sans-serif;cursor:pointer;text-decoration:none;transition:opacity .2s;border:none}
 .mbtn-dl{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
 .mbtn-tg{background:var(--surface);border:1px solid var(--border);color:var(--text)}
 .mbtn:hover{opacity:.85}
@@ -202,7 +200,7 @@ main{padding:28px 24px;max-width:1400px;margin:0 auto}
   </div>
   <div class="search-wrap">
     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="search" placeholder="ابحث عن كتاب...">
+    <input type="text" id="search" placeholder="ابحث في المكتبة...">
   </div>
   <select id="sort">
     <option value="newest">الأحدث أولاً</option>
@@ -213,6 +211,31 @@ main{padding:28px 24px;max-width:1400px;margin:0 auto}
   </select>
 </header>
 
+<!-- ── CHANNEL SEARCH SECTION ── -->
+<div id="channel-search-section">
+  <div class="cs-header">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/></svg>
+    <span class="cs-title">بحث في القناة</span>
+    <span class="cs-subtitle">ابحث عن كتاب في القناة وحمّله مباشرة</span>
+  </div>
+
+  <!-- ngrok URL -->
+  <div class="ngrok-row">
+    <span class="ngrok-label">🔗 API URL:</span>
+    <input type="text" id="ngrokUrl" placeholder="https://xxxx.ngrok.io" value="">
+    <button class="save-url-btn" onclick="saveNgrokUrl()">حفظ</button>
+  </div>
+
+  <div class="cs-input-row">
+    <input type="text" id="channelSearch" placeholder="ابحث عن كتاب في القناة... مثال: NASM" onkeydown="if(event.key==='Enter')channelSearchFn()">
+    <button id="channelSearchBtn" onclick="channelSearchFn()">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      بحث في القناة
+    </button>
+  </div>
+  <div id="channelResults"></div>
+</div>
+
 <main>
   <div id="loading"><div class="spinner"></div><p>جاري تحميل المكتبة...</p></div>
   <div id="empty">
@@ -222,10 +245,11 @@ main{padding:28px 24px;max-width:1400px;margin:0 auto}
   <div id="grid"></div>
 </main>
 
+<!-- Modal -->
 <div id="modal">
   <div class="mbox">
     <button class="mclose" onclick="closeModal()">✕</button>
-    <canvas id="mCanvas"></canvas>
+    <img id="mImg" src="" alt="">
     <div class="mtitle" id="mTitle"></div>
     <div class="mmeta">
       <div class="mchip">📦 <b id="mSize"></b> MB</div>
@@ -246,86 +270,147 @@ main{padding:28px 24px;max-width:1400px;margin:0 auto}
 </div>
 
 <script>
-// بعد
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
-
 const BOOKS_URL = "https://raw.githubusercontent.com/M-creed/sportivebooks/main/data/books.json";
 
 let allBooks = [];
 let filtered  = [];
+let ngrokBase = localStorage.getItem("ngrok_url") || "";
 
-// cache للـ thumbnails عشان ما يحملش مرتين
-const thumbCache = {};
+// ── ngrok URL ──
+if (ngrokBase) document.getElementById("ngrokUrl").value = ngrokBase;
+
+function saveNgrokUrl() {
+  ngrokBase = document.getElementById("ngrokUrl").value.trim().replace(/\/$/, "");
+  localStorage.setItem("ngrok_url", ngrokBase);
+  alert("✅ تم حفظ الـ URL");
+}
+
+// ════════════════════════════════════════
+//  Channel Search
+// ════════════════════════════════════════
+
+async function channelSearchFn() {
+  const q   = document.getElementById("channelSearch").value.trim();
+  const btn = document.getElementById("channelSearchBtn");
+  const res = document.getElementById("channelResults");
+
+  if (!q) return;
+
+  if (!ngrokBase) {
+    res.innerHTML = `<div class="cs-error">⚠️ حط الـ ngrok URL الأول وحفظه</div>`;
+    return;
+  }
+
+  btn.disabled  = true;
+  res.innerHTML = `<div class="cs-loading"><div class="spinner" style="width:28px;height:28px;margin:0 auto 8px"></div>جاري البحث في القناة...</div>`;
+
+  try {
+    const r    = await fetch(`${ngrokBase}/search?q=${encodeURIComponent(q)}`);
+    const data = await r.json();
+
+    if (data.error) {
+      res.innerHTML = `<div class="cs-error">❌ ${data.error}</div>`;
+      return;
+    }
+
+    if (!data.length) {
+      res.innerHTML = `<div class="cs-empty">لا توجد نتائج لـ "${esc(q)}"</div>`;
+      return;
+    }
+
+    res.innerHTML = data.map(b => `
+      <div class="cr-item">
+        <div class="cr-icon">📄</div>
+        <div class="cr-info">
+          <div class="cr-title">${esc(b.title)}</div>
+          <div class="cr-meta">${b.size_mb} MB &nbsp;·&nbsp; ${b.date}</div>
+        </div>
+        <div class="cr-actions">
+          <button class="cr-btn cr-btn-dl" onclick="downloadFromChannel(${b.message_id}, this)" id="dl-${b.message_id}">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            تحميل
+          </button>
+          <a class="cr-btn cr-btn-tg" href="${esc(b.tg_link)}" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.614c-.152.676-.556.84-1.126.523l-3.115-2.295-1.503 1.447c-.166.166-.305.305-.625.305l.223-3.168 5.773-5.215c.25-.224-.055-.348-.39-.124l-7.133 4.49-3.073-.96c-.668-.208-.68-.668.14-.99l12-4.624c.556-.204 1.043.124.869.997z"/></svg>
+            TG
+          </a>
+        </div>
+      </div>
+    `).join("");
+
+  } catch(e) {
+    res.innerHTML = `<div class="cs-error">❌ تعذّر الاتصال بالـ API — تأكد من الـ ngrok URL</div>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function downloadFromChannel(messageId, btn) {
+  btn.disabled     = true;
+  btn.innerHTML    = `<div class="mini-spin" style="width:14px;height:14px;border-width:2px"></div> جاري التحميل...`;
+
+  try {
+    const r    = await fetch(`${ngrokBase}/download`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message_id: messageId})
+    });
+    const data = await r.json();
+
+    if (data.success) {
+      btn.innerHTML = "✅ تم الرفع!";
+      btn.style.background = "var(--success)";
+      // افتح رابط التحميل مباشرة
+      if (data.book?.pdf_url) {
+        window.open(data.book.pdf_url, "_blank");
+      }
+      // حدّث المكتبة
+      setTimeout(() => refresh(), 3000);
+    } else {
+      btn.innerHTML    = "❌ فشل";
+      btn.disabled     = false;
+    }
+  } catch(e) {
+    btn.innerHTML = "❌ خطأ";
+    btn.disabled  = false;
+  }
+}
+
+// ════════════════════════════════════════
+//  Library
+// ════════════════════════════════════════
 
 async function fetchBooks() {
   try {
     const r = await fetch(BOOKS_URL + "?t=" + Date.now());
     if (!r.ok) throw new Error(r.status);
     return await r.json();
-  } catch(e) {
-    console.error("fetch error:", e);
-    return [];
-  }
+  } catch(e) { return []; }
 }
 
 function esc(s) {
   return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 
-// ── رسم أول صفحة PDF على canvas ──
-async function renderPdfThumb(pdfUrl, canvas) {
-  try {
-    if (thumbCache[pdfUrl]) {
-      const ctx = canvas.getContext("2d");
-      canvas.width  = thumbCache[pdfUrl].width;
-      canvas.height = thumbCache[pdfUrl].height;
-      ctx.putImageData(thumbCache[pdfUrl], 0, 0);
-      return;
-    }
-
-    const pdf  = await pdfjsLib.getDocument(pdfUrl).promise;
-    const page = await pdf.getPage(1);
-    const vp   = page.getViewport({ scale: 0.5 });
-
-    canvas.width  = vp.width;
-    canvas.height = vp.height;
-
-    await page.render({ canvasContext: canvas.getContext("2d"), viewport: vp }).promise;
-
-    // cache الصورة
-    thumbCache[pdfUrl] = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height);
-  } catch(e) {
-    canvas.parentElement.innerHTML = `
-      <div class="no-thumb">
-        <svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" width="52" height="52"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-        <span>لا يوجد غلاف</span>
-      </div>`;
-  }
-}
-
-// ── عرض الكتب ──
 function render(books) {
   const grid  = document.getElementById("grid");
   const empty = document.getElementById("empty");
   document.getElementById("results").textContent = books.length;
 
-  if (!books.length) {
-    grid.innerHTML = "";
-    empty.style.display = "block";
-    return;
-  }
+  if (!books.length) { grid.innerHTML=""; empty.style.display="block"; return; }
   empty.style.display = "none";
 
   const week = Date.now() - 7*24*60*60*1000;
 
-  grid.innerHTML = books.map((b, i) => {
-    const isNew = new Date(b.date).getTime() > week;
-    return `
-    <div class="card" style="animation-delay:${Math.min(i,40)*20}ms" onclick="openModal(${i})" data-idx="${i}">
-      <div class="thumb" id="thumb-${i}">
-        <div class="thumb-loading"><div class="mini-spin"></div></div>
+  grid.innerHTML = books.map((b, i) => `
+    <div class="card" style="animation-delay:${Math.min(i,40)*20}ms" onclick="openModal(${i})">
+      <div class="thumb">
+        ${b.thumb_url
+          ? `<img src="${esc(b.thumb_url)}" alt="${esc(b.title)}" loading="lazy">`
+          : `<div class="no-thumb"><svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg><span>لا يوجد غلاف</span></div>`
+        }
         <span class="badge-size">${b.size_mb} MB</span>
-        ${isNew ? '<span class="badge-new">جديد</span>' : ""}
+        ${new Date(b.date).getTime() > week ? '<span class="badge-new">جديد</span>' : ""}
       </div>
       <div class="card-body">
         <div class="card-title">${esc(b.title)}</div>
@@ -335,107 +420,46 @@ function render(books) {
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         تحميل
       </a>
-    </div>`;
-  }).join("");
-
-  // رسم الـ thumbnails بـ Intersection Observer (lazy)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const thumbDiv = entry.target;
-      const idx      = parseInt(thumbDiv.dataset.thumbIdx);
-      const b        = books[idx];
-      if (!b || !b.pdf_url) return;
-
-      observer.unobserve(thumbDiv);
-
-      const canvas = document.createElement("canvas");
-      canvas.style.cssText = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover";
-      thumbDiv.innerHTML = `<span class="badge-size">${b.size_mb} MB</span>${b.date && new Date(b.date).getTime() > week ? '<span class="badge-new">جديد</span>' : ""}`;
-      thumbDiv.appendChild(canvas);
-      renderPdfThumb(b.pdf_url, canvas);
-    });
-  }, { rootMargin: "200px" });
-
-  books.forEach((b, i) => {
-    const thumbDiv = document.getElementById(`thumb-${i}`);
-    if (thumbDiv) {
-      thumbDiv.dataset.thumbIdx = i;
-      observer.observe(thumbDiv);
-    }
-  });
+    </div>`).join("");
 }
 
-// ── فلتر + ترتيب ──
 function applyFilters() {
   const q = document.getElementById("search").value.toLowerCase().trim();
   const s = document.getElementById("sort").value;
-
-  filtered = allBooks.filter(b =>
-    !q || b.title.toLowerCase().includes(q) || (b.caption||"").toLowerCase().includes(q)
-  );
-
-  if (s === "newest")    filtered.sort((a,b) => b.message_id - a.message_id);
-  if (s === "oldest")    filtered.sort((a,b) => a.message_id - b.message_id);
-  if (s === "size_desc") filtered.sort((a,b) => b.size_mb - a.size_mb);
-  if (s === "size_asc")  filtered.sort((a,b) => a.size_mb - b.size_mb);
-  if (s === "az")        filtered.sort((a,b) => a.title.localeCompare(b.title));
-
+  filtered = allBooks.filter(b => !q || b.title.toLowerCase().includes(q) || (b.caption||"").toLowerCase().includes(q));
+  if (s==="newest")    filtered.sort((a,b)=>b.message_id-a.message_id);
+  if (s==="oldest")    filtered.sort((a,b)=>a.message_id-b.message_id);
+  if (s==="size_desc") filtered.sort((a,b)=>b.size_mb-a.size_mb);
+  if (s==="size_asc")  filtered.sort((a,b)=>a.size_mb-b.size_mb);
+  if (s==="az")        filtered.sort((a,b)=>a.title.localeCompare(b.title));
   render(filtered);
 }
 
-let searchTimer;
-document.getElementById("search").addEventListener("input", () => {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(applyFilters, 200);
-});
-document.getElementById("sort").addEventListener("change", applyFilters);
+let st;
+document.getElementById("search").addEventListener("input",()=>{clearTimeout(st);st=setTimeout(applyFilters,200)});
+document.getElementById("sort").addEventListener("change",applyFilters);
 
 // ── Modal ──
-async function openModal(idx) {
+function openModal(idx) {
   const b = filtered[idx];
   if (!b) return;
-
+  const mImg = document.getElementById("mImg");
+  if (b.thumb_url) { mImg.src=b.thumb_url; mImg.style.display="block"; }
+  else { mImg.style.display="none"; }
   document.getElementById("mTitle").textContent = b.title;
   document.getElementById("mSize").textContent  = b.size_mb;
-  document.getElementById("mDate").textContent  = b.date || "—";
-  document.getElementById("mCap").textContent   = b.caption || "لا يوجد وصف";
-
-  const mDl = document.getElementById("mDl");
-  mDl.href = b.pdf_url || b.tg_link || "#";
-
-  document.getElementById("mTg").href = b.tg_link || "#";
+  document.getElementById("mDate").textContent  = b.date||"—";
+  document.getElementById("mCap").textContent   = b.caption||"لا يوجد وصف";
+  document.getElementById("mDl").href  = b.pdf_url||b.tg_link||"#";
+  document.getElementById("mTg").href  = b.tg_link||"#";
   document.getElementById("modal").classList.add("open");
-
-  // رسم أول صفحة في الـ modal بجودة أعلى
-  if (b.pdf_url) {
-    const canvas = document.getElementById("mCanvas");
-    canvas.style.display = "block";
-    try {
-      const pdf  = await pdfjsLib.getDocument(b.pdf_url).promise;
-      const page = await pdf.getPage(1);
-      const vp   = page.getViewport({ scale: 1.5 });
-      canvas.width  = vp.width;
-      canvas.height = vp.height;
-      await page.render({ canvasContext: canvas.getContext("2d"), viewport: vp }).promise;
-    } catch(e) {
-      canvas.style.display = "none";
-    }
-  } else {
-    document.getElementById("mCanvas").style.display = "none";
-  }
 }
 
-function closeModal() {
-  document.getElementById("modal").classList.remove("open");
-}
+function closeModal() { document.getElementById("modal").classList.remove("open"); }
+document.getElementById("modal").addEventListener("click",e=>{if(e.target===document.getElementById("modal"))closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 
-document.getElementById("modal").addEventListener("click", e => {
-  if (e.target === document.getElementById("modal")) closeModal();
-});
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
-
-// ── Auto-refresh كل 5 دقايق ──
+// ── Auto refresh ──
 async function refresh() {
   const books = await fetchBooks();
   if (books.length !== allBooks.length) {
@@ -445,14 +469,13 @@ async function refresh() {
   }
 }
 
-// ── Init ──
-(async () => {
+(async()=>{
   allBooks = await fetchBooks();
-  document.getElementById("loading").style.display = "none";
-  document.getElementById("total").textContent = allBooks.length;
-  filtered = [...allBooks];
+  document.getElementById("loading").style.display="none";
+  document.getElementById("total").textContent=allBooks.length;
+  filtered=[...allBooks];
   applyFilters();
-  setInterval(refresh,  30 * 1000);
+  setInterval(refresh, 30*1000);
 })();
 </script>
 </body>
